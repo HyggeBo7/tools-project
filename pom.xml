@@ -335,8 +335,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
-                    <!--排除(分隔符:[,:;]三种);top.dearbo.frame.common.test:只会排除test包下面的类;top.dearbo.frame.common.test.*:只会排除test包下面的包-->
-                    <excludePackageNames>top.dearbo.frame.common.test,top.dearbo.frame.common.test.*</excludePackageNames>
+                    <!--排除(分隔符:[,:;]三种);top.dearbo.common.frame.test:只会排除test包下面的类;top.dearbo.common.frame.test.*:只会排除test包下面的包-->
+                    <excludePackageNames>top.dearbo.common.frame.test,top.dearbo.common.frame.test.*</excludePackageNames>
                     <show>public</show>
                     <charset>${project.encoding}</charset>
                     <encoding>${project.encoding}</encoding>
@@ -450,7 +450,7 @@
                                 <exclude>**/resources/META-INF/**</exclude>
                                 <!-- exclude the internal threadlocal files -->
                                 <!--<exclude>**/org/apache/dubbo/common/threadlocal/InternalThreadLocal.java</exclude>-->
-                                <exclude>top/dearbo/frame/common/test/**</exclude>
+                                <exclude>top/dearbo/common/frame/common/test/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>
