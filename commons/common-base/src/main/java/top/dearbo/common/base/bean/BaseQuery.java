@@ -28,10 +28,24 @@ public class BaseQuery implements Serializable {
 	 * 升序排序字段
 	 */
 	private transient String[] asc;
+
 	/**
 	 * 降序排序字段
 	 */
 	private transient String[] desc;
+
+	/**
+	 * 是否将排序字段转驼峰下划线
+	 */
+	private transient boolean orderCamelUnderline;
+
+	public boolean isOrderCamelUnderline() {
+		return orderCamelUnderline;
+	}
+
+	public void setOrderCamelUnderline(boolean orderCamelUnderline) {
+		this.orderCamelUnderline = orderCamelUnderline;
+	}
 
 	public String[] getAsc() {
 		return asc;

@@ -3,6 +3,7 @@ package top.dearbo.common.core.result;
 import org.apache.commons.collections4.CollectionUtils;
 import top.dearbo.common.base.bean.BaseQuery;
 import top.dearbo.common.core.exception.AppException;
+import top.dearbo.common.core.lang.StringUtil;
 import top.dearbo.common.core.xt.MapperUtil;
 
 import java.io.Serializable;
@@ -113,7 +114,11 @@ public class PageResult<T> implements Serializable {
 		StringBuilder orderByBuild = new StringBuilder();
 		if (ascArray != null && ascArray.length > 0) {
 			for (int i = 0; i < ascArray.length; ++i) {
-				orderByBuild.append(ascArray[i]);
+				if (condition.isOrderCamelUnderline()) {
+					orderByBuild.append(StringUtil.toCamelUnderline(ascArray[i]));
+				} else {
+					orderByBuild.append(ascArray[i]);
+				}
 				if (i < ascArray.length - 1) {
 					orderByBuild.append(" ASC,");
 				} else {
@@ -127,7 +132,11 @@ public class PageResult<T> implements Serializable {
 				orderByBuild.append(",");
 			}
 			for (int i = 0; i < descArray.length; ++i) {
-				orderByBuild.append(descArray[i]);
+				if (condition.isOrderCamelUnderline()) {
+					orderByBuild.append(StringUtil.toCamelUnderline(descArray[i]));
+				} else {
+					orderByBuild.append(descArray[i]);
+				}
 				if (i < descArray.length - 1) {
 					orderByBuild.append(" DESC,");
 				} else {
