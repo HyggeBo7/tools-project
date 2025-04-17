@@ -9,17 +9,13 @@ import top.dearbo.common.core.network.common.HttpGlobalConfig;
 import top.dearbo.common.core.network.common.HttpStatusCode;
 import top.dearbo.common.core.network.exception.HttpCustomException;
 
-import javax.net.ssl.*;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.*;
 
 /**
@@ -313,20 +309,23 @@ public class HttpUtils {
 	}
 
 	private void setHttps(HttpsURLConnection connection) {
-		// 创建SSLContext对象，并使用我们指定的信任管理器初始化
-		TrustManager[] tm = {new MyX509TrustManager()};
 		try {
-			SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
-			sslContext.init(null, tm, new SecureRandom());
-			// 从上述SSLContext对象中得到SSLSocketFactory对象
-			SSLSocketFactory ssf = sslContext.getSocketFactory();
-			connection.setSSLSocketFactory(ssf);
-		} catch (NoSuchAlgorithmException | KeyManagementException | NoSuchProviderException e) {
+			connection.setSSLSocketFactory(HttpCommonUtil.getSSLContext().getSocketFactory());
+			/*SSLContext sc = SSLContext.getInstance("TLS");
+			sc.init(null, tm, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());*/
+			connection.setHostnameVerifier(DO_NOT_VERIFY);
+		} catch (Exception e) {
 			logger.error("https设置异常!msg:【{}】", e.getMessage(), e);
 			AppException.throwEx(e);
 		}
-
 	}
+
+	private final static HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
+		public boolean verify(String hostname, SSLSession session) {
+			return true;
+		}
+	};
 
 	public boolean isUsePropertyFlag() {
 		return usePropertyFlag;
@@ -613,38 +612,6 @@ public class HttpUtils {
 			if (StringUtils.isNotBlank(headerCookieField)) {
 				this.headerCookieField = headerCookieField;
 			}
-		}
-	}
-
-	/**
-	 * 信任管理器
-	 */
-	class MyX509TrustManager implements X509TrustManager {
-
-
-		/**
-		 * 检查客户端证书
-		 */
-		@Override
-		public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-
-		}
-
-		/**
-		 * 检查服务器端证书
-		 */
-		@Override
-		public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
-
-		}
-
-		/**
-		 * 返回受信任的X509证书数组
-		 */
-		@Override
-		public X509Certificate[] getAcceptedIssuers() {
-			//return new X509Certificate[0];
-			return null;
 		}
 	}
 
