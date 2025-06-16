@@ -5,8 +5,7 @@ import top.dearbo.common.base.bean.ExceptionHandlerService;
 import java.io.Serializable;
 
 /**
- * @author bo
- * @date 2016/3/2
+ * 程序异常类
  */
 public class AppException extends RuntimeException implements ExceptionHandlerService, Serializable {
 	private Integer code;

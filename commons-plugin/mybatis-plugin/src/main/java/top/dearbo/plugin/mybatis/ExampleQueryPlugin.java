@@ -13,7 +13,7 @@ public class ExampleQueryPlugin extends PluginAdapter {
     @Override
     public boolean modelExampleClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         topLevelClass.setSuperClass("BaseQuery");
-        topLevelClass.addImportedType("top.dearbo.base.bean.BaseQuery");
+        topLevelClass.addImportedType("top.dearbo.common.base.bean.BaseQuery");
 //        topLevelClass.addSuperInterface(new FullyQualifiedJavaType("com.hoge.UserInterface"));
 //        topLevelClass.addInnerClass(new InnerClass(new FullyQualifiedJavaType("abcd")));
 //        addLimit(topLevelClass, introspectedTable, "limitStart");

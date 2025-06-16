@@ -3,6 +3,7 @@ package top.dearbo.common.base.bean;
 
 import java.beans.Transient;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 基类查询参数
@@ -17,27 +18,40 @@ public class BaseQuery implements Serializable {
 	/**
 	 * 当前页码
 	 */
-	private transient Integer pageIndex;
+	private Integer pageIndex;
 
 	/**
 	 * 每页多少条数据
 	 */
-	private transient Integer pageSize;
+	private Integer pageSize;
 
 	/**
 	 * 升序排序字段
 	 */
-	private transient String[] asc;
+	private String[] asc;
 
 	/**
 	 * 降序排序字段
 	 */
-	private transient String[] desc;
+	private String[] desc;
+
+	/**
+	 * 多级排序对象
+	 */
+	private List<FieldSort> sorts;
 
 	/**
 	 * 是否将排序字段转驼峰下划线
 	 */
-	private transient boolean orderCamelUnderline;
+	private transient boolean orderCamelUnderline = true;
+
+	public List<FieldSort> getSorts() {
+		return sorts;
+	}
+
+	public void setSorts(List<FieldSort> sorts) {
+		this.sorts = sorts;
+	}
 
 	public boolean isOrderCamelUnderline() {
 		return orderCamelUnderline;
