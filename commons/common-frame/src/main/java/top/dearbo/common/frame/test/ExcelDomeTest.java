@@ -2,6 +2,8 @@ package top.dearbo.common.frame.test;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import top.dearbo.common.frame.util.excel.ExcelWriteUtils;
 import top.dearbo.common.core.data.JsonUtil;
 import top.dearbo.common.core.exception.AppException;
@@ -18,6 +20,8 @@ import java.util.stream.Collectors;
  * @date 2021-07-29 15:05.
  */
 public class ExcelDomeTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(ExcelDomeTest.class);
 
 	@Test
 	public void testAllSheet() throws IOException {
@@ -96,6 +100,7 @@ public class ExcelDomeTest {
 		}
 		String sql = stringBuffer.toString();
 		System.out.println("stringBuffer:\n" + sql);
+		logger.info(sql);
 	}
 
 
