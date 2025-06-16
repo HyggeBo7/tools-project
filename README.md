@@ -1,2 +1,2 @@
 # java 工具类.
-[![](https://jitpack.io/v/DearBo7/dan.svg)](https://jitpack.io/#DearBo7/dan)
+[![](https://jitpack.io/v/HyggeBo7/tools-project.svg)](https://jitpack.io/#HyggeBo7/tools-project)
