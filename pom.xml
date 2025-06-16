@@ -14,6 +14,7 @@
     <modules>
         <module>commons</module>
         <module>commons-plugin</module>
+        <module>commons-web</module>
     </modules>
 
     <properties>
@@ -79,6 +80,11 @@
             <dependency>
                 <groupId>top.dearbo.commons</groupId>
                 <artifactId>common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>top.dearbo.web</groupId>
+                <artifactId>common-web-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--current common module end-->

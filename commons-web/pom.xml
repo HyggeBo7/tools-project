@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>top.dearbo.project</groupId>
+        <artifactId>tools-project</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <groupId>top.dearbo.web</groupId>
+    <artifactId>commons-web</artifactId>
+    <modules>
+        <module>common-web-core</module>
+        <module>common-web-log</module>
+        <module>common-web-spring</module>
+    </modules>
+    <properties>
+        <!--pagehelper 分页-->
+        <pagehelper.version>5.3.2</pagehelper.version>
+        <spring.boot.version>2.7.18</spring.boot.version>
+        <hystrix.core.version>1.5.18</hystrix.core.version>
+        <servlet.version>4.0.1</servlet.version>
+        <aop-aspectj.version>1.9.9.1</aop-aspectj.version>
+        <!--<spring.version>5.2.7.RELEASE</spring.version>-->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--分页-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>
