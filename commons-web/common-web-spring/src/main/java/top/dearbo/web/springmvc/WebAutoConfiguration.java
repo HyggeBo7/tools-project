@@ -3,6 +3,7 @@ package top.dearbo.web.springmvc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ public class WebAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean(GlobalWebExceptionHandler.class)
+	@ConditionalOnProperty(value = "global.config.exception.global-handler.enabled", havingValue = "true", matchIfMissing = true)
 	public GlobalWebExceptionHandler globalWebExceptionHandler() {
 		log.info("Initializing AutoConfig GlobalWebExceptionHandler");
 		return new GlobalWebExceptionHandler();
@@ -27,6 +29,7 @@ public class WebAutoConfiguration {
 
 	@Bean
 	@ConditionalOnMissingBean(WebExceptionHandlerResolver.class)
+	@ConditionalOnProperty(value = "global.config.exception.web-handler-resolver.enabled", havingValue = "true", matchIfMissing = false)
 	public WebExceptionHandlerResolver webExceptionHandlerResolver() {
 		log.info("Initializing AutoConfig WebExceptionHandlerResolver");
 		return new WebExceptionHandlerResolver();

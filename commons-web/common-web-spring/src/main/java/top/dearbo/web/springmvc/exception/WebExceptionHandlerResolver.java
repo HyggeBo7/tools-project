@@ -124,10 +124,19 @@ public class WebExceptionHandlerResolver extends SimpleMappingExceptionResolver 
 				logger.error("【ExceptionHandlerResolver-全局异常捕获非ajax】===>Name={} uri={} para={} trace={}", viewName, request.getRequestURI(), WebServletUtils.toRequestParams(request), stackTrace);
 			}
 		}
+		return getModelAndView(resultMap(ajaxResult));
+	}
+
+	/**
+	 * 方便子类自定义返回试图
+	 *
+	 * @param model 内容
+	 */
+	protected ModelAndView getModelAndView(Map<String, ?> model) {
 		MappingJackson2JsonView view = new MappingJackson2JsonView();
 		view.setObjectMapper(JacksonUtils.getMapperNotNull());
 		view.setContentType("text/json;charset=UTF-8");
-		return new ModelAndView(view, resultMap(ajaxResult));
+		return new ModelAndView(view, model);
 	}
 
 	/**
